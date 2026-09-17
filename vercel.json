@@ -1,0 +1,32 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "regions": ["hkg1"],
+  "functions": {
+    "api/community.mjs": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/works/:id/thumbnail",
+      "destination": "/api/community?path=works/:id/thumbnail"
+    },
+    {
+      "source": "/api/works/:id/like",
+      "destination": "/api/community?path=works/:id/like"
+    },
+    {
+      "source": "/api/works/:id",
+      "destination": "/api/community?path=works/:id"
+    },
+    {
+      "source": "/api/works",
+      "destination": "/api/community?path=works"
+    },
+    {
+      "source": "/api/health",
+      "destination": "/api/community?path=health"
+    }
+  ]
+}

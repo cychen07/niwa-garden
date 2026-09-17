@@ -16,11 +16,13 @@
     "verify:ambience": "node scripts/verify-ambience-reference-camera.mjs",
     "verify:low-angle": "node scripts/verify-low-angle.mjs",
     "start": "node server/index.mjs",
-    "verify:community": "node scripts/verify-community.mjs"
+    "verify:community": "node scripts/verify-community.mjs",
+    "verify:vercel-api": "node scripts/verify-vercel-api.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.3.0",
+    "@vercel/blob": "^2.8.0",
     "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

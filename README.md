@@ -5,14 +5,14 @@ studies, twelve on-demand hint modules, and a persistent community gallery.
 
 ## Online demo
 
-Play the public browser build:
+Play the full public build:
 
-https://cychen07.github.io/niwa-garden/
+https://niwa-garden.vercel.app/
 
-The GitHub Pages build includes the complete garden editor, studies, hints and
-ambient music. The shared gallery requires the Node.js API and persistent
-SQLite storage, so publishing and cross-device community works are available
-when running the full application locally or on a dedicated backend host.
+This Vercel deployment includes the garden editor and the persistent shared
+gallery. The static GitHub Pages mirror remains available at
+https://cychen07.github.io/niwa-garden/, but it cannot publish or load shared
+works because GitHub Pages does not run the API.
 
 ## Run
 
@@ -39,8 +39,11 @@ npm start
 
 ## Data
 
-- SQLite database: `data/community.sqlite`, including scene data and JPEG
-  thumbnails. Restarting the process preserves published works.
+- Local development uses `data/community.sqlite`, including scene data and JPEG
+  thumbnails. Restarting the local process preserves published works.
+- The Vercel deployment uses a private Vercel Blob store in Hong Kong. Vercel
+  Functions access it with short-lived OIDC credentials; no static storage
+  token is committed to the repository.
 - `NIWA_DB`: override the database path. Use a persistent disk in deployment.
 - `PORT` and `HOST`: backend port and bind address. Default host is loopback.
 - `COOKIE_SECURE=1`: enable secure-only ownership cookies behind HTTPS.
@@ -61,6 +64,7 @@ npm start
 ```sh
 npm run build
 npm run verify:community
+npm run verify:vercel-api
 npm run verify:ui
 npm run verify:rake
 npm run verify:expansion
@@ -69,6 +73,8 @@ npm run verify:expansion
 `verify:community` starts an isolated production server with a separate test
 database under `artifacts/community`. It uses two browser contexts, tests
 publication, ownership, restart persistence, studies, hints and mobile layouts.
+`verify:vercel-api` exercises the Vercel API contract against an isolated
+in-memory store without requiring cloud credentials.
 Other browser checks expect a running frontend on port 4173.
 
 Playwright checks use `playwright-core`. Set `CHROME_PATH` to a Chromium
@@ -76,8 +82,8 @@ executable if it is not installed in the usual Playwright cache.
 
 ## Before Public Launch
 
-This workspace has a working local backend, not an internet deployment.
-Public hosting still needs HTTPS, database backups, moderation, abuse controls
-appropriate to traffic, account recovery, and privacy terms. Advertising,
-competitive scores, social sharing and automated level completion are deferred.
-No commercial Sims assets or game content are bundled.
+The public deployment is an MVP. Before promoting it broadly, add moderation,
+automated backups, stronger distributed rate limits, account recovery and
+privacy terms. Advertising, competitive scores, social sharing and automated
+level completion are deferred. No commercial Sims assets or game content are
+bundled.
