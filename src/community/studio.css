@@ -1,0 +1,163 @@
+.editor-scene { position: absolute; inset: 0; }
+.creation-nav { position: absolute; z-index: 10; right: 20px; top: 80px; display: flex; gap: 2px; padding: 4px; border-radius: 6px; background: var(--panel); border: 1px solid var(--line); }
+.creation-nav button { display: flex; align-items: center; justify-content: center; gap: 6px; min-width: 34px; height: 34px; padding: 0 9px; background: transparent; border-radius: 4px; cursor: pointer; }
+.creation-nav button:hover { background: #455349; }
+.creation-nav svg, .creation-clock svg { width: 16px; height: 16px; flex-shrink: 0; }
+.creation-nav span { font-size: 11px; white-space: nowrap; }
+.creation-clock { position: absolute; right: 24px; top: 137px; display: flex; align-items: center; gap: 6px; color: #304c43; font-size: 11px; }
+.creation-clock > [role="status"] { position: absolute; top: 26px; right: 0; width: max-content; max-width: 235px; padding: 6px 9px; background: #f9e4d6; color: #85493a; border-radius: 3px; }
+.project-title span { max-width: 155px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.studio { width: 100%; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: #eef3ef; color: #273d37; overflow: hidden; }
+.studio[open] { display: flex; flex-direction: column; }
+.studio::backdrop { background: #d7e5df; }
+.studio button, .publish-dialog button { cursor: pointer; }
+.studio button:disabled, .publish-dialog button:disabled { cursor: default; opacity: 0.5; }
+.studio select, .studio input { font: inherit; }
+.studio-header { height: 74px; flex: 0 0 74px; display: flex; align-items: center; padding: 0 28px; gap: 28px; background: #f8faf7; border-bottom: 1px solid #cbd8d1; }
+.studio-header strong { font: 600 20px "Yu Mincho", "Hiragino Mincho ProN", serif; white-space: nowrap; }
+.studio-header strong span { margin-left: 10px; color: #7b9185; font: 12px "Avenir Next", sans-serif; }
+.studio-header nav { display: flex; gap: 8px; flex: 1; height: 100%; }
+.studio-header nav button { font-size: 13px; padding: 0 18px; background: transparent; border-bottom: 3px solid transparent; color: #687e73; white-space: nowrap; }
+.studio-header nav button[aria-current] { color: #254f43; border-bottom-color: #bd604c; }
+.icon-command { display: grid; place-items: center; background: transparent; width: 36px; height: 36px; flex-shrink: 0; border-radius: 4px; }
+.icon-command:hover { background: #dae5de; }
+.icon-command svg { width: 19px; height: 19px; }
+.studio-body { flex: 1; min-height: 0; overflow: hidden; }
+.collection-page { height: 100%; overflow-y: auto; padding: 30px max(24px, calc((100% - 1240px) / 2)); }
+.collection-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+.collection-heading small { font-size: 10px; color: #6b877b; }
+.collection-heading h2 { margin: 8px 0 0; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; font-size: 25px; }
+.collection-heading > svg { width: 27px; height: 27px; color: #709487; }
+.garden-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.garden-card { display: flex; flex-direction: column; padding: 0; min-width: 0; background: #fff; color: #2a453a; border: 1px solid #ccdad0; border-radius: 6px; overflow: hidden; text-align: left; }
+.garden-card:hover { border-color: #779e8b; box-shadow: 0 7px 18px #30463a0c; }
+.thumb-viewport { width: 100%; aspect-ratio: 1.9; pointer-events: none; background: #adc8c7; position: relative; }
+.scene-thumb { position: absolute; inset: 0; }
+.garden-card-caption { padding: 17px 20px 20px; }
+.garden-card-caption small { font-size: 11px; color: #789084; overflow-wrap: anywhere; }
+.garden-card-caption h3 { font-size: 19px; margin: 7px 0 10px; font-family: "Yu Mincho", "Hiragino Mincho ProN", serif; overflow-wrap: anywhere; }
+.garden-card-caption span { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #698171; flex-wrap: wrap; }
+.garden-card-caption svg { width: 13px; height: 13px; }
+.work-thumbnail { width: 100%; aspect-ratio: 1.9; object-fit: contain; background: #adc8c7; }
+.study-layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; height: 100%; }
+.study-scene { position: relative; background: #adc8c7; min-width: 0; min-height: 0; }
+.preview-stage { position: relative; width: 100%; height: 100%; min-height: 0; background: #adc8c7; }
+.studio .preview-stage .garden-canvas { cursor: grab; }
+.studio .preview-stage .garden-canvas:active { cursor: grabbing; }
+.preview-controls { display: flex; position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: #263d36e8; border-radius: 5px; padding: 4px; gap: 4px; }
+.preview-controls button { display: grid; place-items: center; width: 34px; height: 34px; background: transparent; color: #eff3e9; border-radius: 3px; }
+.preview-controls button:hover { background: #486254; }
+.preview-controls svg { width: 17px; height: 17px; }
+.back-command { position: absolute; z-index: 2; top: 18px; left: 18px; display: flex; align-items: center; gap: 7px; background: #f5faf2e8; color: #304e40; border-radius: 4px; padding: 9px 12px; font-size: 12px; }
+.back-command svg { width: 15px; height: 15px; }
+.study-notes { overflow-y: auto; padding: 28px 24px; border-left: 1px solid #c3d2c5; background: #f7faf6; }
+.study-notes > small { font-size: 11px; color: #6a8b79; }
+.study-notes h2 { font: 600 27px "Yu Mincho", "Hiragino Mincho ProN", serif; margin: 12px 0 16px; overflow-wrap: anywhere; }
+.study-notes p { font-size: 13px; overflow-wrap: anywhere; }
+.work-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; color: #7a8b7e; font-size: 12px; line-height: 1.6; }
+.work-meta svg { width: 16px; height: 16px; }
+.command { min-height: 37px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 14px; background: #e1e9de; color: #365342; border-radius: 4px; font-size: 12px; text-decoration: none; }
+.command svg { width: 16px; height: 16px; }
+.command.primary { background: #385b4d; color: #f6f7ed; }
+.command.danger { background: #924d40; color: white; }
+.command.selected { background: #cfded0; color: #365944; }
+.hint-command { width: 100%; justify-content: flex-start; margin-top: 15px; background: #eedfb4; color: #5b5539; }
+.hint-section h3 { font-size: 13px; font-weight: 500; margin: 22px 0 12px; }
+.hint-options { display: flex; flex-wrap: wrap; gap: 6px; }
+.hint-options button { display: flex; align-items: center; gap: 4px; border: 1px solid #bfcfbd; padding: 8px 10px; font-size: 11px; background: transparent; border-radius: 3px; }
+.hint-options button[aria-pressed=true] { color: #fff; background: #4f745e; border-color: #4f745e; }
+.hint-options svg { width: 12px; height: 12px; }
+.hint-content { padding-top: 4px; }
+.hint-content .hint-materials { color: #557762; font-size: 12px; line-height: 1.8; }
+.hint-content ol { padding-left: 21px; font-size: 12px; line-height: 1.9; }
+.hint-content li { padding: 6px 0; }
+.challenge-entry { margin-top: 30px; padding-top: 20px; border-top: 1px solid #d2dfce; }
+.challenge-entry p { font-size: 12px; line-height: 1.8; }
+.inline-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.category-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 20px; }
+.category-tabs button { border-radius: 3px; background: transparent; color: #627d6b; padding: 8px 13px; font-size: 12px; }
+.category-tabs button[aria-pressed=true], .category-tabs button[aria-selected=true] { color: white; background: #557763; }
+.error-message { color: #ae4c42; font-size: 12px; line-height: 1.8; margin: 16px 0; overflow-wrap: anywhere; }
+.empty-state { padding: 48px 16px; text-align: center; color: #7b927f; font-size: 14px; }
+.load-more { margin: 25px auto; display: flex; }
+.catalogue-layout { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 35%; }
+.catalogue-list { padding: 26px; overflow-y: auto; }
+.catalogue-search { display: flex; align-items: center; border-bottom: 1px solid #b9cdbc; padding: 0 0 12px; margin-bottom: 20px; gap: 10px; }
+.catalogue-search svg { width: 18px; height: 18px; }
+.catalogue-search input { flex: 1; min-width: 0; background: transparent; border: 0; color: #2c5341; padding: 4px; }
+.catalogue-search button { background: transparent; padding: 5px; }
+.catalogue-count { font-size: 11px; color: #7e9583; margin: 10px 0; }
+.object-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+.object-tile { display: grid; place-items: center; gap: 8px; height: 112px; border: 1px solid #d4dfd0; border-radius: 5px; background: #f8faf5; color: #54745e; padding: 12px 6px; }
+.object-tile svg { width: 29px; height: 29px; stroke-width: 1.3; }
+.object-tile span { font-size: 12px; }
+.object-tile small { font-size: 9px; color: #97a48f; }
+.object-tile.selected { border-color: #668b70; background: #e0ead9; }
+.catalogue-detail { display: flex; flex-direction: column; min-height: 0; background: #f7faf3; border-left: 1px solid #c9d6c7; }
+.catalogue-detail .preview-stage { flex: 1; }
+.catalogue-description { padding: 22px; }
+.catalogue-description small { font-size: 11px; color: #7e947d; }
+.catalogue-description h2 { font: 600 23px "Yu Mincho", serif; margin: 8px 0; }
+.catalogue-description p { color: #7a8c75; font-size: 12px; line-height: 1.8; }
+.publish-dialog { width: min(430px, calc(100% - 24px)); max-height: calc(100dvh - 30px); overflow-y: auto; background: #f5f8f2; color: #365240; border: 1px solid #b3c7b6; border-radius: 7px; padding: 20px; }
+.publish-dialog::backdrop { background: #182d238c; backdrop-filter: blur(3px); }
+.publish-dialog h2 { font-size: 18px; margin: 0; }
+.publish-preview { width: 100%; aspect-ratio: 1.8; object-fit: contain; background: #adc8c7; border-radius: 3px; }
+.field { display: grid; gap: 6px; margin: 14px 0; font-size: 12px; }
+.field input { width: 100%; border: 1px solid #bbcfb9; border-radius: 3px; padding: 9px; color: #284a34; background: #fff; }
+.consent { display: flex; gap: 8px; align-items: flex-start; font-size: 12px; line-height: 1.8; margin: 20px 0; }
+.consent input { accent-color: #4c7157; margin-top: 5px; }
+.publish-dialog .dialog-actions { border-color: #c8d6c0; }
+.publish-dialog .dialog-actions button { background: #dbe7d2; color: #45613e; }
+.publish-dialog .dialog-actions button.primary { background: #3d654b; color: #fff; }
+.publish-success { padding: 24px 0 8px; text-align: center; }
+.publish-success > svg { color: #4c865b; }
+.publish-success p { font-size: 13px; color: #748d6e; }
+@media (max-width: 1200px) {
+  .creation-nav span { display: none; }
+}
+@media (max-width: 1000px) {
+  .study-layout { grid-template-columns: minmax(0, 1fr) 290px; }
+  .catalogue-layout { grid-template-columns: minmax(0, 1fr) 40%; }
+}
+@media (max-width: 720px) {
+  .creation-nav { top: 190px; right: 12px; padding: 2px; gap: 2px; }
+  .creation-nav button { height: 30px; width: 31px; min-width: 31px; padding: 0; }
+  .creation-clock { top: 238px; left: 14px; right: auto; font-size: 10px; }
+  .creation-clock svg { width: 13px; height: 13px; }
+  .creation-clock > [role="status"] { left: 0; right: auto; }
+  .studio-header { padding: 0 10px; height: 58px; flex-basis: 58px; gap: 8px; }
+  .studio-header strong { font-size: 16px; }
+  .studio-header strong span { display: none; }
+  .studio-header nav { gap: 0; justify-content: center; }
+  .studio-header nav button { padding: 0 9px; font-size: 11px; }
+  .studio-header .icon-command { width: 28px; }
+  .collection-page { padding: 22px 16px; }
+  .collection-heading h2 { font-size: 21px; }
+  .garden-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .collection-heading { margin-bottom: 20px; }
+  .study-layout { display: flex; flex-direction: column; overflow-y: auto; }
+  .study-scene { flex: 0 0 350px; }
+  .study-notes { overflow: visible; border-left: 0; padding: 22px; }
+  .study-notes h2 { font-size: 23px; }
+  .catalogue-layout { display: flex; flex-direction: column-reverse; }
+  .catalogue-detail { flex: 0 0 215px; flex-direction: row; border-left: 0; border-bottom: 1px solid #bfceba; }
+  .catalogue-detail .preview-stage { width: 50%; flex: 1; }
+  .catalogue-description { width: 45%; padding: 15px; }
+  .catalogue-description h2 { font-size: 19px; }
+  .catalogue-description p { font-size: 11px; }
+  .catalogue-description .command { padding: 8px 12px; }
+  .catalogue-list { flex: 1; padding: 16px; }
+  .object-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .object-tile { height: 95px; }
+  .category-tabs { gap: 2px; margin-bottom: 14px; }
+  .category-tabs button { padding: 7px 10px; font-size: 11px; }
+  .preview-controls { bottom: 10px; }
+  .catalogue-detail .preview-controls button { width: 26px; height: 26px; }
+}
+@media (max-width: 350px) {
+  .studio-header strong { display: none; }
+  .creation-nav button { width: 29px; min-width: 29px; }
+  .study-scene { flex-basis: 300px; }
+  .catalogue-detail { flex-basis: 195px; }
+}

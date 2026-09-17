@@ -1,0 +1,45 @@
+import type { ObjectKind } from "./model";
+
+export const categories = ["全部", "乔木", "花草", "石与水", "道路围合", "建筑", "灯饰", "庭院生活"] as const;
+export type Category = typeof categories[number];
+export const catalog: { kind: ObjectKind; name: string; category: Category; detail: string }[] = [
+  { kind: "maple", name: "枫", category: "乔木", detail: "随四季变色的庭院主树" },
+  { kind: "pine", name: "松", category: "乔木", detail: "常绿针叶，适合石组背景" },
+  { kind: "bamboo", name: "竹", category: "乔木", detail: "轻盈成丛的竖向层次" },
+  { kind: "cherry", name: "樱花", category: "乔木", detail: "春季粉色花冠" },
+  { kind: "willow", name: "垂柳", category: "乔木", detail: "池边的垂枝树冠" },
+  { kind: "plum", name: "梅树", category: "乔木", detail: "疏枝与红梅花簇" },
+  { kind: "bonsai", name: "盆栽松", category: "庭院生活", detail: "陶盆里的小型景观" },
+  { kind: "azalea", name: "杜鹃", category: "花草", detail: "低矮开花灌木" },
+  { kind: "iris", name: "鸢尾", category: "花草", detail: "水边的蓝紫花朵" },
+  { kind: "hydrangea", name: "绣球", category: "花草", detail: "淡蓝球形花序" },
+  { kind: "fern", name: "蕨丛", category: "花草", detail: "阴湿角落的贴地绿意" },
+  { kind: "lotus", name: "睡莲", category: "花草", detail: "低置莲叶与粉白花朵" },
+  { kind: "reed", name: "芒草", category: "花草", detail: "水岸细叶与浅色花穗" },
+  { kind: "rock", name: "景石", category: "石与水", detail: "低矮、带苔的景观石" },
+  { kind: "tallrock", name: "立石", category: "石与水", detail: "石组中的竖向主石" },
+  { kind: "pebble", name: "卵石簇", category: "石与水", detail: "细碎的岸线与铺地过渡" },
+  { kind: "basin", name: "水钵", category: "石与水", detail: "竹口与石质水盘" },
+  { kind: "shishi", name: "鹿威", category: "石与水", detail: "缓缓摆动的竹制水景" },
+  { kind: "stepping", name: "飞石", category: "道路围合", detail: "三枚错落的自然踏石" },
+  { kind: "stonepath", name: "方石步道", category: "道路围合", detail: "规整的三联石板" },
+  { kind: "wooddeck", name: "木平台", category: "道路围合", detail: "可拼接的木质地台" },
+  { kind: "fence", name: "竹篱", category: "道路围合", detail: "通透竹篱，分隔空间" },
+  { kind: "wall", name: "白墙", category: "道路围合", detail: "白灰墙身与深色瓦顶" },
+  { kind: "gate", name: "木庭门", category: "道路围合", detail: "轻巧木门与格栅" },
+  { kind: "bridge", name: "朱桥", category: "建筑", detail: "池上的朱色木桥" },
+  { kind: "stonebridge", name: "石板桥", category: "建筑", detail: "低矮素雅的石桥" },
+  { kind: "torii", name: "鸟居", category: "建筑", detail: "朱柱与深色横梁" },
+  { kind: "pavilion", name: "茶亭", category: "建筑", detail: "四柱、屋檐与坐席" },
+  { kind: "pergola", name: "藤架", category: "建筑", detail: "藤蔓覆盖的通透棚架" },
+  { kind: "pagoda", name: "石塔", category: "建筑", detail: "三重石檐的竖向点景" },
+  { kind: "lantern", name: "石灯笼", category: "灯饰", detail: "入夜后点亮的石灯" },
+  { kind: "paperlantern", name: "纸灯", category: "灯饰", detail: "木架悬挂的暖色灯笼" },
+  { kind: "groundlamp", name: "地灯", category: "灯饰", detail: "步道旁的低位光点" },
+  { kind: "bench", name: "长凳", category: "庭院生活", detail: "双人木质坐凳" },
+  { kind: "teatable", name: "茶桌", category: "庭院生活", detail: "低桌、茶壶与双杯" },
+  { kind: "cushion", name: "坐垫", category: "庭院生活", detail: "靛蓝方形软垫" },
+  { kind: "umbrella", name: "和伞", category: "庭院生活", detail: "朱红伞面与竹骨" },
+];
+
+export const objectName = (kind: ObjectKind) => catalog.find((item) => item.kind === kind)?.name ?? kind;
