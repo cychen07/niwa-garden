@@ -4,6 +4,7 @@
   "regions": ["hkg1"],
   "functions": {
     "api/community.mjs": {
+      "includeFiles": "src/game/model.ts",
       "maxDuration": 10
     }
   },
