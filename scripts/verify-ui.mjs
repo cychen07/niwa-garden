@@ -7,6 +7,7 @@ import assert from "node:assert/strict";
 import { OrthographicCamera, Vector3 } from "three";
 import { cameraFrame, CAMERA_TARGET, DEFAULT_CAMERA_POSITION } from "../src/game/camera.ts";
 import { createInitialGarden, heightAt, surfaceAt, parseGarden, applyBrush, GRID_SIDE, SAVE_KEY, LEGACY_SAVE_KEY } from "../src/game/model.ts";
+import { suppressOnboarding } from "./onboarding-test.mjs";
 
 const outputDir = new URL("../artifacts/", import.meta.url);
 await mkdir(outputDir, { recursive: true });
@@ -103,6 +104,7 @@ try {
     const context = await browser.newContext({ viewport: { width: 1440, height: 960 }, reducedMotion: "reduce" });
     await context.addInitScript(({ key, garden }) => localStorage.setItem(key, JSON.stringify(garden)),
       { key: SAVE_KEY, garden: fixture });
+    await suppressOnboarding(context);
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     await page.goto(baseURL, { waitUntil: "networkidle" });
@@ -165,6 +167,7 @@ try {
   ]) {
     console.log(`${viewport.name}: starting`);
     const context = await browser.newContext({ viewport, reducedMotion: "reduce", hasTouch: viewport.name !== "desktop", isMobile: viewport.name !== "desktop" });
+    await suppressOnboarding(context);
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     const errors = [];
@@ -390,6 +393,7 @@ try {
   assert.ok(migrated);
   const context = await browser.newContext();
   await context.addInitScript(({ key, data }) => { localStorage.setItem(key, JSON.stringify(data)); }, { key: LEGACY_SAVE_KEY, data: legacy });
+  await suppressOnboarding(context);
   const page = await context.newPage();
   await page.goto(baseURL, { waitUntil: "networkidle" });
   assert.deepEqual(await save(page), migrated, "Legacy browser migration differs");

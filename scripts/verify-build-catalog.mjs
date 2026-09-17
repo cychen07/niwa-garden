@@ -7,6 +7,7 @@ import { chromium } from "playwright-core";
 import { OrthographicCamera, Vector3 } from "three";
 import { cameraFrame, CAMERA_TARGET, DEFAULT_CAMERA_POSITION } from "../src/game/camera.ts";
 import { createInitialGarden, heightAt, SAVE_KEY } from "../src/game/model.ts";
+import { suppressOnboarding } from "./onboarding-test.mjs";
 
 const output = new URL("../artifacts/build-catalog/", import.meta.url);
 await mkdir(output, { recursive: true });
@@ -123,6 +124,7 @@ try {
       key: SAVE_KEY,
       garden: fixture,
     });
+    await suppressOnboarding(context);
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     const errors = [];

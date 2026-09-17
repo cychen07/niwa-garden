@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { homedir } from "node:os";
 import { chromium } from "playwright-core";
 import { createInitialGarden, resizeGarden, SAVE_KEY } from "../src/game/model.ts";
+import { suppressOnboarding } from "./onboarding-test.mjs";
 
 const output = new URL("../artifacts/size-camera/", import.meta.url);
 await mkdir(output, { recursive: true });
@@ -125,6 +126,7 @@ try {
     { name: "small-mobile", width: 320, height: 640 },
   ]) {
     const context = await browser.newContext({ viewport, reducedMotion: "reduce", hasTouch: viewport.width < 720 });
+    await suppressOnboarding(context);
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     const errors = [];

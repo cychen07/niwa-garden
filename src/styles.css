@@ -1154,6 +1154,445 @@ input:focus-visible {
   transform: translate(-50%, 0);
 }
 
+.onboarding-dialog {
+  width: min(720px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #aeb9a7;
+  border-radius: 8px;
+  background: #f1f2e9;
+  color: #293d32;
+  box-shadow: 0 28px 100px rgba(9, 18, 13, 0.38);
+}
+
+.onboarding-dialog::backdrop {
+  background: rgba(13, 25, 19, 0.58);
+  backdrop-filter: blur(5px);
+}
+
+.onboarding-close {
+  position: absolute;
+  z-index: 2;
+  top: 15px;
+  right: 15px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 4px;
+  background: transparent;
+  color: #53665a;
+  cursor: pointer;
+}
+
+.onboarding-close:hover {
+  background: #dfe5da;
+}
+
+.onboarding-close svg {
+  width: 17px;
+  height: 17px;
+}
+
+.onboarding-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  height: 66px;
+  padding: 12px 58px 12px 20px;
+  border-bottom: 1px solid #cad2c5;
+}
+
+.onboarding-seal {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  place-items: center;
+  border: 1px solid #b44f3b;
+  background: #bd5a43;
+  color: #fff9eb;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 19px;
+}
+
+.onboarding-heading div {
+  display: grid;
+  gap: 2px;
+}
+
+.onboarding-heading small,
+.onboarding-copy small {
+  color: #9b4a38;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.onboarding-heading strong {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.onboarding-stage {
+  display: grid;
+  min-height: 328px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(245px, 0.92fr);
+  animation: onboarding-reveal 240ms ease-out both;
+}
+
+.onboarding-visual {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  place-items: center;
+  overflow: hidden;
+  border-right: 1px solid #c8d1c2;
+  background: #dfe6d6;
+}
+
+.onboarding-visual::before,
+.onboarding-visual::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.onboarding-visual::before {
+  inset: 24px;
+  border: 1px solid rgba(66, 92, 73, 0.18);
+}
+
+.onboarding-visual::after {
+  right: 34px;
+  bottom: 31px;
+  width: 54px;
+  height: 1px;
+  background: #a54d3c;
+  box-shadow: 0 5px 0 rgba(165, 77, 60, 0.28);
+}
+
+.guide-rail {
+  position: absolute;
+  left: 52px;
+  display: grid;
+  gap: 7px;
+  padding: 7px;
+  border: 1px solid #526b59;
+  background: #344b3c;
+  box-shadow: 9px 10px 0 rgba(67, 87, 71, 0.13);
+}
+
+.guide-rail span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  color: #c7d1c1;
+}
+
+.guide-rail span.active {
+  background: #d7b26d;
+  color: #304536;
+}
+
+.guide-rail svg {
+  width: 18px;
+}
+
+.guide-choice {
+  position: relative;
+  display: grid;
+  width: 142px;
+  height: 142px;
+  margin-left: 76px;
+  place-items: center;
+  border: 1px solid #8fa18d;
+  background: #eef0e6;
+  box-shadow: 12px 14px 0 rgba(67, 87, 71, 0.11);
+}
+
+.guide-choice > svg:not(.guide-pointer) {
+  width: 62px;
+  height: 62px;
+  color: #4f7358;
+  stroke-width: 1.25;
+}
+
+.guide-choice b {
+  position: absolute;
+  right: 10px;
+  bottom: 9px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.guide-choice i {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  background: #bd5a43;
+}
+
+.guide-pointer {
+  position: absolute;
+  right: -18px;
+  bottom: -10px;
+  width: 35px;
+  height: 35px;
+  color: #293d32;
+  fill: #f1f2e9;
+}
+
+.guide-garden {
+  position: relative;
+  width: 230px;
+  height: 180px;
+  border: 1px solid #809581;
+  background: #cbd9c4;
+  box-shadow: 13px 15px 0 rgba(67, 87, 71, 0.11);
+  transform: perspective(520px) rotateX(56deg) rotateZ(-5deg);
+}
+
+.guide-garden::before,
+.guide-garden::after {
+  position: absolute;
+  content: "";
+  background: rgba(67, 92, 72, 0.14);
+}
+
+.guide-garden::before {
+  top: 33%;
+  right: 0;
+  left: 0;
+  height: 1px;
+  box-shadow: 0 59px 0 rgba(67, 92, 72, 0.14);
+}
+
+.guide-garden::after {
+  top: 0;
+  bottom: 0;
+  left: 33%;
+  width: 1px;
+  box-shadow: 76px 0 0 rgba(67, 92, 72, 0.14);
+}
+
+.guide-tree {
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  left: 92px;
+  width: 48px;
+  height: 48px;
+  color: #3d694b;
+  fill: #aec8a9;
+  transform: rotateZ(5deg) rotateX(-56deg);
+}
+
+.guide-stone {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  width: 28px;
+  height: 20px;
+  border: 1px solid #6f7a71;
+  border-radius: 50%;
+  background: #a6ada4;
+}
+
+.stone-one {
+  top: 114px;
+  left: 44px;
+}
+
+.stone-two {
+  top: 26px;
+  right: 38px;
+  width: 22px;
+  height: 16px;
+}
+
+.guide-place-pointer {
+  position: absolute;
+  z-index: 2;
+  right: 49px;
+  bottom: 31px;
+  width: 31px;
+  color: #314b3a;
+  fill: #eef0e6;
+  transform: rotateZ(5deg) rotateX(-56deg);
+}
+
+.guide-orbit {
+  position: absolute;
+  right: 38px;
+  bottom: 34px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #526a59;
+  font-size: 10px;
+}
+
+.guide-orbit svg {
+  width: 18px;
+}
+
+.guide-flow {
+  display: grid;
+  width: min(290px, calc(100% - 70px));
+  grid-template-columns: 48px 1fr 48px 1fr 48px;
+  align-items: center;
+}
+
+.guide-flow span {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #788e7b;
+  background: #edf0e6;
+  color: #4c6755;
+  box-shadow: 6px 7px 0 rgba(67, 87, 71, 0.1);
+}
+
+.guide-flow span.final {
+  border-color: #a04c3a;
+  background: #bd5a43;
+  color: #fff9eb;
+}
+
+.guide-flow svg {
+  width: 21px;
+}
+
+.guide-flow i {
+  height: 1px;
+  background: #8ba08b;
+}
+
+.guide-labels {
+  position: absolute;
+  top: calc(50% + 45px);
+  display: flex;
+  width: min(290px, calc(100% - 70px));
+  justify-content: space-between;
+  color: #566b5c;
+  font-size: 10px;
+}
+
+.onboarding-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 38px 38px 38px 34px;
+}
+
+.onboarding-copy h2 {
+  margin: 11px 0 13px;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.onboarding-copy p {
+  margin: 0;
+  color: #657568;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.onboarding-progress {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 11px;
+  border-top: 1px solid #cad2c5;
+}
+
+.onboarding-progress button {
+  display: grid;
+  width: 26px;
+  height: 18px;
+  place-items: center;
+  background: transparent;
+  cursor: pointer;
+}
+
+.onboarding-progress span {
+  width: 16px;
+  height: 2px;
+  background: #aab5a8;
+  transition: width 160ms ease, background 160ms ease;
+}
+
+.onboarding-progress button.active span {
+  width: 24px;
+  background: #b5533f;
+}
+
+.onboarding-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 62px;
+  padding: 10px 16px 12px;
+  border-top: 1px solid #cad2c5;
+}
+
+.onboarding-actions button {
+  display: flex;
+  min-width: 104px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.onboarding-actions .quiet {
+  background: transparent;
+  color: #657568;
+}
+
+.onboarding-actions .quiet:hover {
+  background: #e2e6dc;
+}
+
+.onboarding-actions .primary {
+  background: #354f3d;
+  color: #f8f4e7;
+}
+
+.onboarding-actions .primary:hover {
+  background: #263e30;
+}
+
+.onboarding-actions svg {
+  width: 15px;
+  height: 15px;
+}
+
+@keyframes onboarding-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .size-dialog {
   width: min(380px, calc(100% - 24px));
   max-height: calc(100dvh - 32px);
@@ -1426,6 +1865,103 @@ input:focus-visible {
 }
 
 @media (max-width: 720px) {
+  .onboarding-dialog {
+    width: min(430px, calc(100% - 20px));
+    max-height: calc(100dvh - 20px);
+    overflow-y: auto;
+  }
+
+  .onboarding-heading {
+    height: 58px;
+    padding: 9px 52px 9px 14px;
+  }
+
+  .onboarding-seal {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    font-size: 17px;
+  }
+
+  .onboarding-stage {
+    min-height: 390px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 220px auto;
+  }
+
+  .onboarding-visual {
+    min-height: 220px;
+    border-right: 0;
+    border-bottom: 1px solid #c8d1c2;
+  }
+
+  .onboarding-visual::before {
+    inset: 17px;
+  }
+
+  .guide-rail {
+    left: calc(50% - 105px);
+  }
+
+  .guide-choice {
+    width: 116px;
+    height: 116px;
+    margin-left: 66px;
+  }
+
+  .guide-choice > svg:not(.guide-pointer) {
+    width: 52px;
+    height: 52px;
+  }
+
+  .guide-garden {
+    width: 190px;
+    height: 136px;
+  }
+
+  .guide-tree {
+    top: 28px;
+    left: 73px;
+  }
+
+  .guide-place-pointer {
+    right: 40px;
+    bottom: 20px;
+  }
+
+  .guide-orbit {
+    right: 27px;
+    bottom: 21px;
+  }
+
+  .onboarding-copy {
+    justify-content: flex-start;
+    padding: 24px 24px 26px;
+  }
+
+  .onboarding-copy h2 {
+    margin: 7px 0 8px;
+    font-size: 21px;
+  }
+
+  .onboarding-copy p {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .onboarding-progress {
+    padding: 7px;
+  }
+
+  .onboarding-actions {
+    min-height: 56px;
+    padding: 8px 12px 10px;
+  }
+
+  .onboarding-actions button {
+    height: 36px;
+  }
+
   .view-tools {
     top: 65px;
     left: 12px;
@@ -1625,6 +2161,23 @@ input:focus-visible {
 }
 
 @media (max-width: 350px) {
+  .onboarding-stage {
+    min-height: 348px;
+    grid-template-rows: 190px auto;
+  }
+
+  .onboarding-visual {
+    min-height: 190px;
+  }
+
+  .onboarding-copy {
+    padding: 18px 20px 20px;
+  }
+
+  .onboarding-copy h2 {
+    font-size: 19px;
+  }
+
   .view-tools button { width: 24px; }
   .environment-trigger { padding: 0 10px; }
   .template-reference { width: 132px; }
@@ -1642,6 +2195,10 @@ input:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .onboarding-stage {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

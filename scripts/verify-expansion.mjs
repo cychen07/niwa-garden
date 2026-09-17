@@ -10,6 +10,7 @@ import {
   createInitialGarden, resizeGarden, parseGarden, terrainGrid, heightAt, surfaceAt, inGarden,
   GARDEN_SIZES, SAVE_KEY, PREVIOUS_SAVE_KEY,
 } from "../src/game/model.ts";
+import { suppressOnboarding } from "./onboarding-test.mjs";
 
 const output = new URL("../artifacts/expansion/", import.meta.url);
 await mkdir(output, { recursive: true });
@@ -138,6 +139,7 @@ try {
   ]) {
     console.log(`${viewport.name}: starting`);
     const context = await browser.newContext({ viewport, reducedMotion: "reduce", hasTouch: viewport.name !== "desktop" });
+    await suppressOnboarding(context);
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     const errors = [];
@@ -255,6 +257,7 @@ try {
   await migration.addInitScript(({ key, data }) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(data));
   }, { key: PREVIOUS_SAVE_KEY, data: previous });
+  await suppressOnboarding(migration);
   const page = await migration.newPage();
   await page.goto(process.env.BASE_URL ?? "http://127.0.0.1:4173/", { waitUntil: "networkidle" });
   assert.deepEqual(await save(page), initial);

@@ -8,6 +8,7 @@ import assert from "node:assert/strict";
 import { OrthographicCamera, Vector3 } from "three";
 import { cameraFrame, CAMERA_TARGET, DEFAULT_CAMERA_POSITION } from "../src/game/camera.ts";
 import { createInitialGarden, applyBrush, SAVE_KEY } from "../src/game/model.ts";
+import { suppressOnboarding } from "./onboarding-test.mjs";
 
 const slowOnly = process.argv.includes("--slow-only");
 const output = new URL(slowOnly ? "../artifacts/rake-slow-fix/" : "../artifacts/rake-inspection/", import.meta.url);
@@ -48,6 +49,7 @@ async function prepare(viewport, surface = "sand") {
   seed.terrain.heights.fill(0.16);
   seed.terrain.surfaces.fill(surface);
   const context = await browser.newContext({ viewport, reducedMotion: "reduce", hasTouch: viewport.width < 720 });
+  await suppressOnboarding(context);
   // A fresh browser context keeps inspection fixtures separate from user gardens.
   await context.addInitScript(({ key, seed }) => {
     if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(seed));

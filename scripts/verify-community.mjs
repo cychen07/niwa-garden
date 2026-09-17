@@ -93,6 +93,14 @@ try {
   const alice = await browser.newContext({ viewport: { width: 1440, height: 960 }, reducedMotion: "reduce" });
   const page = await alice.newPage(); track(page);
   await page.goto(baseURL, { waitUntil: "networkidle" });
+  await page.getByRole("heading", { name: "先挑一件喜欢的物品" }).waitFor();
+  await snap(page, "onboarding-desktop");
+  await button(page, "下一步").click();
+  await page.getByRole("heading", { name: "点在庭院里，慢慢摆放" }).waitFor();
+  await button(page, "下一步").click();
+  await page.getByRole("heading", { name: "保存下来，也可以分享" }).waitFor();
+  await button(page, "开始搭建").click();
+  assert.equal(await page.locator(".onboarding-dialog[open]").count(), 0);
   console.log("desktop: editor ready");
   await canvasPixels(page, ".editor-scene canvas");
   await layout(page);
@@ -180,6 +188,7 @@ try {
   assert.equal((await (await alice.request.get(`${baseURL}/api/works`)).json()).works.length, 1, "Duplicate publish created a second work");
   await button(page, "关闭发布").click();
   await page.reload({ waitUntil: "networkidle" });
+  assert.equal(await page.locator(".onboarding-dialog[open]").count(), 0, "Onboarding repeated on the same day");
   await button(page, "保存庭院").click();
   assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem("niwa-garden-v3"))), baseline);
   console.log("desktop: publish, idempotency and draft reload passed");
@@ -187,6 +196,9 @@ try {
   const bob = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true, reducedMotion: "reduce" });
   const phone = await bob.newPage(); track(phone);
   await phone.goto(baseURL, { waitUntil: "networkidle" });
+  await phone.getByRole("button", { name: "跳过引导" }).waitFor();
+  await snap(phone, "onboarding-mobile");
+  await button(phone, "跳过引导").click();
   await canvasPixels(phone, ".editor-scene canvas");
   await button(phone, "保存庭院").click();
   const phoneBaseline = await phone.evaluate(() => JSON.parse(localStorage.getItem("niwa-garden-v3")));

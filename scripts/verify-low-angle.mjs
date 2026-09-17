@@ -5,6 +5,7 @@ import { homedir } from "node:os";
 import { join } from "node:path";
 import { chromium } from "playwright-core";
 import { createInitialGarden, resizeGarden, SAVE_KEY } from "../src/game/model.ts";
+import { suppressOnboarding } from "./onboarding-test.mjs";
 
 const inspect = process.argv.includes("--inspect");
 const output = new URL("../artifacts/low-angle/", import.meta.url);
@@ -122,6 +123,7 @@ try {
       const fixture = resizeGarden(createInitialGarden(), size);
       await context.addInitScript(({ key, garden }) => localStorage.setItem(key, JSON.stringify(garden)),
         { key: SAVE_KEY, garden: fixture });
+      await suppressOnboarding(context);
       const page = await context.newPage();
       page.setDefaultTimeout(15000);
       const errors = [];

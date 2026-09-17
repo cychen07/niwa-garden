@@ -59,6 +59,7 @@ import { PublishDialog } from "./community/PublishDialog";
 import { useDraft, RECOVERY_KEY, DRAFT_KEY } from "./community/useDraft";
 import { duration } from "./community/client";
 import { parseGarden } from "./game/model";
+import { Onboarding, shouldShowOnboarding } from "./Onboarding";
 import "./community/studio.css";
 
 const seasons: { value: EnvironmentState["season"]; label: string }[] = [
@@ -101,7 +102,8 @@ export default function App() {
   const [sizeActive, setSizeActive] = useState(false);
   const [library, setLibrary] = useState<LibraryTab | null>(null);
   const [publishing, setPublishing] = useState(false);
-  const draft = useDraft(garden, !library && !publishing && !sizeActive);
+  const [onboarding, setOnboarding] = useState(shouldShowOnboarding);
+  const draft = useDraft(garden, !library && !publishing && !sizeActive && !onboarding);
   const activeTemplate = templates.find((template) => template.id === draft.meta.templateId) ?? null;
   const [toast, setToast] = useState("");
   const toastTimer = useRef<number | null>(null);
@@ -269,8 +271,8 @@ export default function App() {
         onPlace={place}
         onSelect={setSelectedId}
         onMove={move}
-        still={library !== null}
-        readOnly={sizeActive || publishing}
+        still={library !== null || onboarding}
+        readOnly={sizeActive || publishing || onboarding}
       />
       </div>
 
@@ -503,6 +505,7 @@ export default function App() {
       {publishing && <PublishDialog garden={garden} environment={environment} meta={draft.meta}
         onMeta={draft.setMeta} onClose={() => setPublishing(false)}
         onGallery={() => { setPublishing(false); setLibrary("gallery"); }} />}
+      {onboarding && <Onboarding onClose={() => setOnboarding(false)} />}
 
       <div className={`toast ${toast ? "show" : ""}`} role="status">
         {toast}

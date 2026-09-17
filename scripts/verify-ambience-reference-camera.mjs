@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { chromium } from "playwright-core";
 import { createInitialGarden, SAVE_KEY } from "../src/game/model.ts";
 import { blankGarden } from "../src/game/templates.ts";
+import { suppressOnboarding } from "./onboarding-test.mjs";
 
 const output = new URL("../artifacts/ambience-reference-camera/", import.meta.url);
 const DRAFT_KEY = "niwa-active-draft";
@@ -100,6 +101,7 @@ try {
       localStorage.clear();
       localStorage.setItem(key, JSON.stringify(garden));
     }, { key: SAVE_KEY, garden: fixture });
+    await suppressOnboarding(context);
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     const errors = [];
@@ -183,6 +185,7 @@ try {
       localStorage.setItem(saveKey, JSON.stringify(draft.garden));
       localStorage.setItem(draftKey, JSON.stringify(draft));
     }, { saveKey: SAVE_KEY, draftKey: DRAFT_KEY, draft });
+    await suppressOnboarding(context);
     const page = await context.newPage();
     page.setDefaultTimeout(15000);
     await page.goto(baseURL, { waitUntil: "networkidle" });
